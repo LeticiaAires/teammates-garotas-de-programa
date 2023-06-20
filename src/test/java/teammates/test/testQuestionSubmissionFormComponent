@@ -1,0 +1,394 @@
+public class NgDoCheckTest {
+    
+    // Happy Path - isLoaded == true, isEveryRecipientSorted == true
+    public static void testCaseCD1HappyPath() {
+        Model model = new Model(true);
+        NgDoCheckTest testCase = new NgDoCheckTest(model, true, true, false, false);
+
+        testCase.ngDoCheck();
+
+        if (testCase.isEveryRecipientSorted) {
+            System.out.println("Recipients are sorted.");
+        } else {
+            System.out.println("Recipients are not sorted.");
+        }
+    }
+
+    // isLoaded == false, isEveryRecipientSorted == true
+    public static void testCaseCD1IsLoadedFalse() {
+        Model model = new Model(false);
+        NgDoCheckTest testCase = new NgDoCheckTest(model, true, true, false, false);
+
+        testCase.ngDoCheck();
+
+        if (testCase.isEveryRecipientSorted) {
+            System.out.println("Recipients are sorted.");
+        } else {
+            System.out.println("Recipients are not sorted.");
+        }
+    }
+
+    // isLoaded == null, isEveryRecipientSorted == true
+    public static void testCaseCD1IsLoadedNull() {
+        Model model = new Model(null);
+        NgDoCheckTest testCase = new NgDoCheckTest(model, true, true, false, false);
+
+        testCase.ngDoCheck();
+
+        if (testCase.isEveryRecipientSorted) {
+            System.out.println("Recipients are sorted.");
+        } else {
+            System.out.println("Recipients are not sorted.");
+        }
+    }
+
+    // isLoaded == undefined, isEveryRecipientSorted == true
+    public static void testCaseCD1IsLoadedUndefined() {
+        Model model = new Model();
+        NgDoCheckTest testCase = new NgDoCheckTest(model, true, true, false, false);
+
+        testCase.ngDoCheck();
+
+        if (testCase.isEveryRecipientSorted) {
+            System.out.println("Recipients are sorted.");
+        } else {
+            System.out.println("Recipients are not sorted.");
+        }
+    }
+
+    // isLoaded == true, isEveryRecipientSorted == false
+    public static void testCaseCD1IsEveryRecipientSortedFalse() {
+        Model model = new Model(true);
+        NgDoCheckTest testCase = new NgDoCheckTest(model, true, false, false, false);
+
+        testCase.ngDoCheck();
+
+        if (testCase.isEveryRecipientSorted) {
+            System.out.println("Recipients are sorted.");
+        } else {
+            System.out.println("Recipients are not sorted.");
+        }
+    }
+
+    // isLoaded == true, isEveryRecipientSorted == null
+    public static void testCaseCD1IsEveryRecipientSortedNull() {
+        Model model = new Model(true);
+        NgDoCheckTest testCase = new NgDoCheckTest(model, true, null, false, false);
+
+        testCase.ngDoCheck();
+
+        if (testCase.isEveryRecipientSorted) {
+            System.out.println("Recipients are sorted.");
+        } else {
+            System.out.println("Recipients are not sorted.");
+        }
+    }
+
+    // isLoaded == true, isEveryRecipientSorted == undefined
+    public static void testCaseCD1IsEveryRecipientSortedUndefined() {
+        Model model = new Model(true);
+        NgDoCheckTest testCase = new NgDoCheckTest(model, true, false, false, false);
+
+        testCase.ngDoCheck();
+
+        if (testCase.isEveryRecipientSorted) {
+            System.out.println("Recipients are sorted.");
+        } else {
+            System.out.println("Recipients are not sorted");
+
+        }
+    }
+
+     // CD2 - Happy Path
+     private static void testCaseCD2HappyPath() {
+        setup();
+
+        // Execute the ngDoCheck method
+        testCase.ngDoCheck();
+
+        if (testCase.isSaved()) {
+            System.out.println("Recipient submission forms have response IDs and isSaved is true.");
+        } else {
+            System.out.println("Recipient submission forms have response IDs but isSaved is false.");
+        }
+    }
+
+    // CD2 - responseId.length == null
+    private static void testCaseCD2ResponseIdLengthNull() {
+        setup();
+
+        // Set responseId.length to null for all forms
+        testCase.setRecipientSubmissionForms(generateForms(null));
+
+        // Execute the ngDoCheck method
+        testCase.ngDoCheck();
+
+        if (testCase.isSaved()) {
+            System.out.println("Recipient submission forms have response IDs with length null and isSaved is true.");
+        } else {
+            System.out.println("Recipient submission forms have response IDs with length null but isSaved is false.");
+        }
+    }
+
+    // CD2 - responseId.length == undefined
+    private static void testCaseCD2ResponseIdLengthUndefined() {
+        setup();
+
+        // Set responseId.length to undefined for all forms
+        testCase.setRecipientSubmissionForms(generateForms(undefined));
+
+        // Execute the ngDoCheck method
+        testCase.ngDoCheck();
+
+        if (testCase.isSaved()) {
+            System.out.println("Recipient submission forms have response IDs with length undefined and isSaved is true.");
+        } else {
+            System.out.println("Recipient submission forms have response IDs with length undefined but isSaved is false.");
+        }
+    }
+
+    // CD2 - isSaved == undefined
+    private static void testCaseCD2IsSavedUndefined() {
+        setup();
+
+        // Set isSaved to undefined
+        testCase.setIsSaved(undefined);
+
+        // Execute the ngDoCheck method
+        testCase.ngDoCheck();
+
+        if (testCase.isSaved() == null) {
+            System.out.println("Recipient submission forms have response IDs and isSaved is undefined.");
+        } else {
+            System.out.println("Recipient submission forms have response IDs but isSaved is not undefined.");
+        }
+    }
+
+    // CD2 - isSaved == null
+    private static void testCaseCD2IsSavedNull() {
+        setup();
+
+        // Set isSaved to null
+        testCase.setIsSaved(null);
+
+        // Execute the ngDoCheck method
+        testCase.ngDoCheck();
+
+        if (testCase.isSaved() == null) {
+            System.out.println("Recipient submission forms have response IDs and isSaved is null.");
+        } else {
+            System.out.println("Recipient submission forms have response IDs but isSaved is not null.");
+        }
+    }
+
+    // CD2 - isSaved == true
+    private static void testCaseCD2IsSavedTrue() {
+        setup();
+
+        // Set isSaved to true
+        testCase.setIsSaved(true);
+
+        // Execute the ngDoCheck method
+        testCase.ngDoCheck();
+
+        if (testCase.isSaved()) {
+            System.out.println("Recipient submission forms have response IDs and isSaved is true.");
+        } else {
+            System.out.println("Recipient submission forms have response IDs but isSaved is false.");
+        }
+    }
+
+    
+    
+        // CD3 - Happy Path
+        private static void testCaseCD3HappyPath() {
+            setup();
+    
+            // Execute the ngDoCheck method
+            testCase.ngDoCheck();
+    
+            if (!testCase.isSaved()) {
+                System.out.println("Response has changed and isSaved is false.");
+            } else {
+                System.out.println("Response has not changed or isSaved is true.");
+            }
+        }
+    
+        // CD3 - this.hasResponseChanged == null
+        private static void testCaseCD3HasResponseChangedNull() {
+            setup();
+    
+            // Set this.hasResponseChanged to null
+            testCase.setHasResponseChanged(null);
+    
+            // Execute the ngDoCheck method
+            testCase.ngDoCheck();
+    
+            if (!testCase.isSaved()) {
+                System.out.println("Response has changed and this.hasResponseChanged is null.");
+            } else {
+                System.out.println("Response has not changed or this.hasResponseChanged is not null.");
+            }
+        }
+    
+        // CD3 - this.hasResponseChanged == undefined
+        private static void testCaseCD3HasResponseChangedUndefined() {
+            setup();
+    
+            // Set this.hasResponseChanged to undefined
+            testCase.setHasResponseChanged(undefined);
+    
+            // Execute the ngDoCheck method
+            testCase.ngDoCheck();
+    
+            if (!testCase.isSaved()) {
+                System.out.println("Response has changed and this.hasResponseChanged is undefined.");
+            } else {
+                System.out.println("Response has not changed or this.hasResponseChanged is not undefined.");
+            }
+        }
+    
+        // CD3 - this.hasResponseChanged == true
+        private static void testCaseCD3HasResponseChangedTrue() {
+            setup();
+    
+            // Set this.hasResponseChanged to true
+            testCase.setHasResponseChanged(true);
+    
+            // Execute the ngDoCheck method
+            testCase.ngDoCheck();
+    
+            if (!testCase.isSaved()) {
+                System.out.println("Response has changed and this.hasResponseChanged is true.");
+            } else {
+                System.out.println("Response has not changed or this.hasResponseChanged is not true.");
+            }
+        }
+    
+        // CD3 - this.hasResponseChanged == false
+        private static void testCaseCD3HasResponseChangedFalse() {
+            setup();
+    
+            // Set this.hasResponseChanged to false
+            testCase.setHasResponseChanged(false);
+    
+            // Execute the ngDoCheck method
+            testCase.ngDoCheck();
+    
+            if (testCase.isSaved()) {
+                System.out.println("Response has not changed and this.hasResponseChanged is false.");
+            } else {
+                System.out.println("Response has changed or this.hasResponseChanged is not false.");
+            }
+        }
+
+        
+    // CD4 - Happy Path
+    private static void testCaseCD4HappyPath() {
+        setup();
+
+        // Set isSubmitAllClicked to true
+        testCase.setIsSubmitAllClicked(true);
+        // Add a recipient submission form with responseId.length > 0
+        testCase.addRecipientSubmissionForm("response1");
+
+        // Execute the ngDoCheck method
+        testCase.ngDoCheck();
+
+        if (testCase.isSaved()) {
+            System.out.println("Submit clicked and at least one recipient has a non-empty response.");
+        } else {
+            System.out.println("Submit clicked, but no recipient has a non-empty response.");
+        }
+    }
+
+    // CD4 - Submit not clicked
+    private static void testCaseCD4SubmitNotClicked() {
+        setup();
+
+        // Add a recipient submission form with responseId.length > 0
+        testCase.addRecipientSubmissionForm("response1");
+
+        // Execute the ngDoCheck method
+        testCase.ngDoCheck();
+
+        if (!testCase.isSaved()) {
+            System.out.println("Submit not clicked and at least one recipient has a non-empty response.");
+        } else {
+            System.out.println("Submit not clicked or no recipient has a non-empty response.");
+        }
+    }
+
+    // CD4 - All responseId.length == null
+    private static void testCaseCD4AllResponseIdNull() {
+        setup();
+
+        // Set isSubmitAllClicked to true
+        testCase.setIsSubmitAllClicked(true);
+        // Add recipient submission forms with responseId.length == null
+        testCase.addRecipientSubmissionForm(null);
+        testCase.addRecipientSubmissionForm(null);
+
+        // Execute the ngDoCheck method
+        testCase.ngDoCheck();
+
+        if (!testCase.isSaved()) {
+            System.out.println("Submit clicked, but all recipient responseId lengths are null.");
+        } else {
+            System.out.println("Submit clicked and at least one recipient has a non-null responseId.");
+        }
+    }
+
+    // CD4 - All responseId.length == undefined
+    private static void testCaseCD4AllResponseIdUndefined() {
+        setup();
+
+        // Set isSubmitAllClicked to true
+        testCase.setIsSubmitAllClicked(true);
+        // Add recipient submission forms with responseId.length == undefined
+        testCase.addRecipientSubmissionForm(undefined);
+        testCase.addRecipientSubmissionForm(undefined);
+
+        // Execute the ngDoCheck method
+        testCase.ngDoCheck();
+
+        if (!testCase.isSaved()) {
+            System.out.println("Submit clicked, but all recipient responseId lengths are undefined.");
+        } else {
+            System.out.println("Submit clicked and at least one recipient has a defined responseId length.");
+        }
+    }    
+            
+        
+            public static void main(String[] args) {
+                // Execute the test cases
+                testCaseCD4HappyPath();
+                testCaseCD4SubmitNotClicked();
+                testCaseCD4AllResponseIdNull();
+                testCaseCD4AllResponseIdUndefined();
+            }
+        }
+        
+    
+        public static void main(String[] args) {
+            // Execute the test cases
+            testCaseCD3HappyPath();
+            testCaseCD3HasResponseChangedNull();
+            testCaseCD3HasResponseChangedUndefined();
+            testCaseCD3HasResponseChangedTrue();
+            testCaseCD3HasResponseChangedFalse();
+        }
+    }
+              
+    
+
+    public static void main(String[] args) {
+        testCaseCD1HappyPath();
+        testCaseCD1IsLoadedFalse();
+        testCaseCD1IsLoadedNull();
+        testCaseCD1IsLoadedUndefined();
+        testCaseCD1IsEveryRecipientSortedFalse();
+        testCaseCD1IsEveryRecipientSortedNull();
+        testCaseCD1IsEveryRecipientSortedUndefined();
+    }
+}
